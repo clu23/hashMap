@@ -56,6 +56,52 @@ class hashMap {
         this.buckets=newBuckets;
     }
 
+
+    get(key){
+        const hashKey=hash(key);
+        for(let i=0; i<this.buckets[hashKey % this.buckets.length].length; i++){
+            if (this.buckets[hashKey % this.buckets.length][i].key==key){
+                return(this.buckets[hashKey % this.buckets.length][i].value);
+            }
+        }
+        return(null)
+    }
+
+    has(key){
+        const hashKey=hash(key);
+        for(let i=0; i<this.buckets[hashKey % this.buckets.length].length; i++){
+            if (this.buckets[hashKey % this.buckets.length][i].key==key){
+                return(true);
+            }
+        }
+        return(false)
+    }
+
+    remove(key){
+        const hashKey=hash(key);
+        if (this.has(key)){
+            this.buckets[hashKey % this.buckets.length]=this.buckets[hashKey % this.buckets.length].filter(function(e) { return e.key != key; });
+            this.entriesNumber--;
+            return(true);
+        }
+        else{
+            return(false);
+        }
+    }
+
+    length(){
+        return(this.entriesNumber);
+    }
+
+    clear(){
+        if (this.entriesNumber>0){
+            for(let i=0; i<this.buckets.length; i++){
+                this.buckets[i]=[];
+            }
+            this.entriesNumber=0;
+        }
+    }
+
 }
 
 
@@ -64,13 +110,16 @@ a = new hashMap();
 a.set("Poires", 72)
 a.set("Pommes", 28);
 a.set("Pommes", 42)
+a.set("Tomates", 12)
 
-console.log(hash("Poires")% 16)
-console.log(hash("Poires")% 32)
 
 console.log(a.buckets);
 
 a.extend()
 
-console.log(a)
+
+
+console.log(a);
+
+
 
