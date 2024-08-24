@@ -102,24 +102,53 @@ class hashMap {
         }
     }
 
+    keys(){
+        let keys=[]
+        if (this.entriesNumber>0){
+            for(let i=0; i<this.buckets.length; i++){
+                if(this.buckets[i].length>0){
+                    for(let j=0; j<this.buckets[i].length; j++){
+                        keys.push(this.buckets[i][j].key);
+                    }
+                }
+            }
+        }
+        return(keys);
+    }
+
+    values(){
+        let values=[];
+        if (this.entriesNumber>0){
+            for(let i=0; i<this.buckets.length; i++){
+                if(this.buckets[i].length>0){
+                    for(let j=0; j<this.buckets[i].length; j++){
+                        values.push(this.buckets[i][j].value);
+                    }
+                }
+            }
+        }
+        return(values);
+    }
+
+    entries(){
+        let entries=[];
+        if (this.entriesNumber>0){
+            for(let i=0; i<this.buckets.length; i++){
+                if(this.buckets[i].length>0){
+                    for(let j=0; j<this.buckets[i].length; j++){
+                        entries.push([this.buckets[i][j].key,this.buckets[i][j].value]);
+                    }
+                }
+            }
+        }
+        return(entries);
+    }
+
 }
 
 
-a = new hashMap();
+const test = new hashMap();
 
-a.set("Poires", 72)
-a.set("Pommes", 28);
-a.set("Pommes", 42)
-a.set("Tomates", 12)
-
-
-console.log(a.buckets);
-
-a.extend()
-
-
-
-console.log(a);
 
 
 
